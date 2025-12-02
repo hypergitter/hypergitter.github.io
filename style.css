@@ -1,0 +1,222 @@
+/* --- 基础设置 --- */
+:root {
+    --primary-color: #003366; /* 学术深蓝 */
+    --accent-color: #b08d55;  /* 金色点缀 */
+    --text-color: #333;
+    --bg-light: #f4f7f6;
+    --white: #fff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Helvetica Neue", Arial, sans-serif; color: var(--text-color); line-height: 1.6; background: var(--bg-light); }
+a { text-decoration: none; color: var(--primary-color); }
+ul { list-style: none; }
+
+.container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+/* --- 导航栏 --- */
+.navbar { background: var(--white); box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+.nav-container { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+.logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
+
+.nav-links { display: flex; gap: 30px; }
+.nav-links li { 
+    cursor: pointer; 
+    font-weight: 500; 
+    padding: 10px 0; 
+    position: relative; 
+    color: #666;
+}
+/* 选中状态和悬停效果 */
+.nav-links li:hover, .nav-links li.active { color: var(--primary-color); }
+.nav-links li.active::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: var(--primary-color);
+}
+.mobile-menu-icon { display: none; } /* 暂不展开移动端菜单逻辑 */
+
+/* --- 主要内容与Tab切换逻辑 --- */
+.main-content { min-height: 80vh; padding-top: 30px; padding-bottom: 50px; }
+
+/* 核心逻辑：默认隐藏所有Tab，只有active的才显示 */
+.tab-content { display: none; animation: fadeIn 0.5s ease; }
+.tab-content.active { display: block; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Home 板块 --- */
+.hero-banner { position: relative; margin-bottom: 30px; border-radius: 8px; overflow: hidden; }
+.hero-banner img { width: 100%; height: auto; display: block; filter: brightness(0.8); }
+.hero-text { position: absolute; bottom: 20px; left: 20px; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.6); }
+
+.section-block { background: var(--white); padding: 25px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.section-block h2, .tab-content h2 { border-bottom: 2px solid var(--bg-light); padding-bottom: 10px; margin-bottom: 20px; color: var(--primary-color); }
+
+.news-list li { padding: 10px 0; border-bottom: 1px dashed #eee; }
+.news-list .date { font-weight: bold; color: var(--accent-color); margin-right: 10px; }
+
+/* --- Research 板块 --- */
+.research-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.research-card { background: var(--white); padding: 25px; border-radius: 8px; text-align: center; transition: transform 0.3s; border-top: 4px solid var(--primary-color); }
+.research-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.card-icon { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px; }
+
+/* --- Publication 板块 --- */
+.pub-year { margin-bottom: 30px; }
+.pub-year h3 { color: var(--accent-color); font-size: 1.4rem; margin-bottom: 15px; }
+.pub-list li { margin-bottom: 15px; padding-left: 20px; border-left: 3px solid #eee; }
+.pub-title { font-weight: bold; display: block; }
+.pub-authors { color: #555; display: block; }
+.pub-journal { font-style: italic; color: #777; }
+.pdf-link { font-size: 0.8rem; margin-left: 10px; color: var(--primary-color); border: 1px solid var(--primary-color); padding: 0 5px; border-radius: 4px; }
+
+/* --- NMR Learning 板块 --- */
+.resource-section { background: var(--white); padding: 20px; margin-bottom: 20px; border-radius: 8px; }
+.resource-list li { margin-bottom: 10px; }
+.resource-list a { color: var(--primary-color); text-decoration: underline; }
+.resource-list a:hover { color: var(--accent-color); }
+
+/* --- Gallary Team 页面样式 --- */
+
+/* 1. PI (导师) 卡片样式 */
+.pi-card {
+    display: flex;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    gap: 30px;
+    margin-bottom: 40px;
+    align-items: flex-start; /* 顶部对齐 */
+}
+
+.pi-photo img {
+    width: 200px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    box-shadow: 4px 4px 0 var(--primary-color); /* 装饰性阴影 */
+}
+
+.pi-info h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.pi-title {
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.pi-bio {
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.pi-contact li {
+    margin-bottom: 8px;
+    color: #666;
+    font-size: 0.9rem;
+}
+.pi-contact i {
+    width: 25px;
+    color: var(--primary-color);
+}
+
+/* 2. 学生成员网格样式 */
+.sub-group-title {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 10px;
+    background: #eef;
+    padding: 5px 10px;
+}
+
+.team-grid {
+    display: grid;
+    /* 自动适应宽度，每列最小200px */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.member-card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.member-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* 圆形头像 */
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 3px solid #f0f0f0;
+}
+
+.member-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.member-card p {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.member-card .email {
+    color: #999;
+    font-size: 0.75rem;
+    margin-top: 5px;
+}
+
+/* 3. 校友列表样式 */
+.alumni-list {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+}
+.alumni-list p {
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 10px;
+}
+
+/* 移动端适配：PI卡片变竖排 */
+@media (max-width: 768px) {
+    .pi-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    .pi-photo img {
+        width: 150px;
+        height: 180px;
+    }
+    .pi-contact {
+        text-align: left; /* 联系方式保持左对齐比较好看 */
+        display: inline-block;
+    }
+}
+
+/* --- Footer --- */
+footer { background: #333; color: #aaa; padding: 40px 0; text-align: center; font-size: 0.9rem; margin-top: auto; }
